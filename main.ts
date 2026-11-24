@@ -11,5 +11,9 @@ if (length < MIN_LENGTH || length > MAX_LENGTH) {
   throw new Error(`entry length ${length} outside [${MIN_LENGTH}, ${MAX_LENGTH}]`);
 }
 
+if (line.trim().length === 0) {
+  throw new Error("entry must not be only whitespace");
+}
+
 mkdirSync("/output", { recursive: true });
 writeFileSync("/output/entry.txt", line, "utf8");
